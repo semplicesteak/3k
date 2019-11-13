@@ -1,3 +1,4 @@
 # 3k
-python app.py
+## Requirements: flask
+## Run: python app.py
  
