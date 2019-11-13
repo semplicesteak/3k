@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import sqlite3, os.path
+import sqlite3, os.path, random
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -16,6 +16,8 @@ def index():
         c_list = choose_list['list'].split(',')
         for l in c_list:
             result = sql_mod(l)
+            if choose_list['random'] == 'random':
+                result=random_words(result)
             result_l.append({'number':l,
                              'words': result
                              })
@@ -33,6 +35,13 @@ def sql_mod(table_name):
         value_list.append(list(row))
     conn.close()
     return value_list
+
+def random_words(word_list):
+    resultList = random.sample(range(0, len(word_list)), len(word_list));
+    word_list2 =[]
+    for i in resultList:
+        word_list2.append(word_list[i])
+    return word_list2
 
 if __name__ == '__main__':
     app.run()

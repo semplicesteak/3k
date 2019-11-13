@@ -36,7 +36,6 @@
   });
   $('#3').click(function(){
     $(".inputstyle3").show();
-    $('span')
   });
 });
 </script>
@@ -48,9 +47,10 @@
 	{% for list in choose_list %}
 		<h2>List{{ list.number }}</h2>
 		{% for word in list.words %}
-			<span id = 'word'><input class="inputstyle1" type="text" id="eng" value={{ word[0] }}>
-			<input class="inputstyle2" type="text" id="chn" value={{ word[1] }}>
-			<input class="inputstyle3" type="text" id="err"  value={{ word[0] }}>
+			<span id = 'word'>
+                <input class="inputstyle1" type="text" id="eng" value={{ word[0] }}>
+			    <input class="inputstyle3" type="text" id="err"  value={{ word[0] }}>
+                <input class="inputstyle2" type="text" id="chn" value={{ word[1] }}>
 			</span><br>
 		{% endfor %}
 	{% endfor %}
