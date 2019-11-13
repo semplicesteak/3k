@@ -1,0 +1,57 @@
+<style>
+	h2 {
+		counter-reset: section;
+	}
+	span:before {
+		counter-increment: section;
+		content: counters(section, ".") " ";
+	}
+	.inputstyle1 {
+		position: relative;
+		font-size: 25px;
+		width: 200px;
+	}
+	.inputstyle2 {
+		position: relative;
+		font-size: 15px;
+		width: 400px;
+	}
+	.inputstyle3 {
+		position: relative;
+		font-size: 25px;
+		width: 200px;
+	}
+	.red {
+		color: red;
+	}
+</style>
+<script src="../static/jquery-3.4.1.js"></script>
+<script type="application/javascript">
+	$(document).ready(function(){
+  $('#2').click(function(){
+    $(".inputstyle3").hide();
+  });
+  $('#1').click(function () {
+	  $('.inputstyle1').val('')
+  });
+  $('#3').click(function(){
+    $(".inputstyle3").show();
+    $('span')
+  });
+});
+</script>
+
+{% block content %}
+	<input class="btn" type="button" value="默写单词" id="1">
+	<input class="btn2" type="button" value="隐藏" id="2">
+	<input class="btn3" type="button" value="订正" id="3">
+	{% for list in choose_list %}
+		<h2>List{{ list.number }}</h2>
+		{% for word in list.words %}
+			<span id = 'word'><input class="inputstyle1" type="text" id="eng" value={{ word[0] }}>
+			<input class="inputstyle2" type="text" id="chn" value={{ word[1] }}>
+			<input class="inputstyle3" type="text" id="err"  value={{ word[0] }}>
+			</span><br>
+		{% endfor %}
+	{% endfor %}
+{% endblock %}
